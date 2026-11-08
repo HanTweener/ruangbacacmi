@@ -49,15 +49,27 @@ services:
         aliases:
           - baca-cmi-mailpit
 
-  tunnel:
+  tunnel-web:
     image: cloudflare/cloudflared:latest
-    container_name: baca-cmi-tunnel
+    container_name: baca-cmi-tunnel-web
     restart: unless-stopped
     command: tunnel --no-autoupdate run
     environment:
-      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN_WEB}
     depends_on:
       - baca-cmi-web
+    networks:
+      - cmi-network
+
+  tunnel-mail:
+    image: cloudflare/cloudflared:latest
+    container_name: baca-cmi-tunnel-mail
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN_MAIL}
+    depends_on:
+      - mailpit
     networks:
       - cmi-network
 
