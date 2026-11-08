@@ -21,10 +21,12 @@ if [ -n "$APP_KEY" ]; then
     php artisan view:cache || true
 fi
 
-# Jalankan migrasi database otomatis jika DB_HOST dikonfigurasi
+# Jalankan migrasi dan seed database otomatis jika DB_HOST dikonfigurasi
 if [ -n "$DB_HOST" ]; then
     echo "Running database migrations..."
     php artisan migrate --force || true
+    echo "Running database seeders..."
+    php artisan db:seed --force || true
 fi
 
 exec "$@"

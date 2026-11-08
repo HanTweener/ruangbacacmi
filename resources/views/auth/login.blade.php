@@ -4,6 +4,23 @@
     <span class="eyebrow">UNTUK PENULIS</span>
     <h2>Senang berjumpa lagi.</h2>
     <p class="muted">Masuk untuk mengelola artikel Anda.</p>
+    <div style="background: var(--sand, #f8f6f0); border: 1px solid var(--line, #e3e3e3); border-radius: 6px; padding: 12px 14px; margin: 15px 0 20px; font-size: 13px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <strong style="color: var(--navy, #002244); font-size: 12px; letter-spacing: 0.5px;">AKUN DEMO PENGUJIAN</strong>
+            <span style="font-size: 10px; background: #eef8f2; color: #236747; border: 1px solid #b7d9c6; padding: 1px 6px; border-radius: 4px; font-weight: 600;">Aktif</span>
+        </div>
+        <div style="display: grid; gap: 4px; font-size: 12px; color: var(--charcoal, #1f1f1f); line-height: 1.5;">
+            <div><span>Email:</span> <code style="font-size: 11px; background: #fff; padding: 2px 6px; border-radius: 3px; border: 1px solid #e3e3e3;">redaksi@example.test</code></div>
+            <div><span>Sandi:</span> <code style="font-size: 11px; background: #fff; padding: 2px 6px; border-radius: 3px; border: 1px solid #e3e3e3;">Password123456</code></div>
+        </div>
+        <button
+            type="button"
+            onclick="document.getElementById('email').value='redaksi@example.test'; document.getElementById('password').value='Password123456';"
+            style="margin-top: 10px; font-size: 11px; color: var(--blue, #0b57d0); background: none; border: none; padding: 0; cursor: pointer; text-decoration: underline; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;"
+        >
+            <span>Isi otomatis formulir</span> <span aria-hidden="true">↓</span>
+        </button>
+    </div>
     <form
         class="stack-form"
         method="post"

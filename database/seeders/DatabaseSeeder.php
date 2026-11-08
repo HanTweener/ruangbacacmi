@@ -17,14 +17,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Synthetic authors have random, undisclosed passwords. Register your own account.
+        // Akun demo untuk pengujian & presentasi
         $author = User::firstOrCreate(['email' => 'redaksi@example.test'], [
             'name' => 'Redaksi Demo CMI',
-            'password' => Str::random(48),
+            'password' => 'Password123456',
         ]);
         $second = User::firstOrCreate(['email' => 'penulis@example.test'], [
             'name' => 'Penulis Demo',
-            'password' => Str::random(48),
+            'password' => 'Password123456',
         ]);
         $stories = [
             [
