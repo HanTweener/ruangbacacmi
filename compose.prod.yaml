@@ -8,7 +8,7 @@ services:
     environment:
       APP_ENV: production
       APP_DEBUG: "false"
-      APP_URL: ${APP_URL:-https://bacacmi.mfarhanf.dpdns.org}
+      APP_URL: ${APP_URL:-https://bacacmiv1.mfarhanf.dpdns.org}
       DB_HOST: mysql
       DB_PORT: 3306
     depends_on:

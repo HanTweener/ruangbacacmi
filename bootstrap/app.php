@@ -15,7 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustProxies(at: '*');
         $middleware->web(append: [SecurityHeaders::class, AuthenticateSession::class]);
-        $middleware->trustHosts(at: fn () => ['^'.preg_quote(parse_url(config('app.url'), PHP_URL_HOST) ?: '127.0.0.1', '/').'$'], subdomains: false);
+        $middleware->trustHosts(at: fn () => [
+            '^'.preg_quote(parse_url(config('app.url'), PHP_URL_HOST) ?: '127.0.0.1', '/').'$',
+            '^baca-cmi-web$',
+            '^localhost$',
+            '^127\.0\.0\.1$',
+        ], subdomains: false);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
