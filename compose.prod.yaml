@@ -45,7 +45,9 @@ services:
     environment:
       MP_MAX_MESSAGES: 500
     networks:
-      - cmi-network
+      cmi-network:
+        aliases:
+          - baca-cmi-mailpit
 
   tunnel:
     image: cloudflare/cloudflared:latest
