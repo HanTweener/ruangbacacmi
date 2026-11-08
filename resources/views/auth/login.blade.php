@@ -13,13 +13,6 @@
             <div><span>Email:</span> <code style="font-size: 11px; background: #fff; padding: 2px 6px; border-radius: 3px; border: 1px solid #e3e3e3;">redaksi@example.test</code></div>
             <div><span>Sandi:</span> <code style="font-size: 11px; background: #fff; padding: 2px 6px; border-radius: 3px; border: 1px solid #e3e3e3;">Password123456</code></div>
         </div>
-        <button
-            type="button"
-            onclick="document.getElementById('email').value='redaksi@example.test'; document.getElementById('password').value='Password123456';"
-            style="margin-top: 10px; font-size: 11px; color: var(--blue, #0b57d0); background: none; border: none; padding: 0; cursor: pointer; text-decoration: underline; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;"
-        >
-            <span>Isi otomatis formulir</span> <span aria-hidden="true">↓</span>
-        </button>
     </div>
     <form
         class="stack-form"
