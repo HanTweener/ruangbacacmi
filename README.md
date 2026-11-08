@@ -53,6 +53,18 @@ Untuk proyek yang **sudah dikonfigurasi**, cukup nyalakan MySQL dan jalankan `co
 
 Setelah menerima perubahan migration, jalankan `php artisan migrate`.
 
+## Menerbitkan artikel
+
+1. Daftar atau login, lalu buka **Artikel saya** → **Tambah artikel**.
+2. Isi **Judul artikel** (5–180 karakter) dan **Isi artikel** (30–50.000 karakter). Gunakan teks biasa dan pisahkan paragraf dengan baris kosong.
+3. Pilih kategori. Jika diperlukan, tambahkan **Gambar sampul** berformat JPG/JPEG, PNG, atau WebP, maksimal 2 MB dan 5000 × 5000 piksel.
+4. Pada **Status publikasi**, pilih **Published — dapat dibaca publik**, lalu klik **Simpan artikel**.
+5. Buka **Jelajahi artikel** untuk memastikan artikel muncul dan dapat dibaca. Artikel Published juga dapat dibuka pengunjung tanpa login.
+
+Untuk menyimpan tanpa menerbitkan, pilih **Draft — hanya Anda**. Untuk menerbitkan draft, buka **Artikel saya**, pilih **Edit** pada artikel tersebut, ubah status menjadi **Published**, lalu klik **Simpan perubahan**. Mengubah status kembali ke **Draft** akan menyembunyikan artikel dan gambarnya dari pengunjung.
+
+Gambar disimpan di `storage/app/private/articles/` dengan nama file otomatis; database hanya menyimpan path relatifnya. Laravel menyajikannya melalui `/artikel/{article}/gambar` sesuai akses artikel. Saat memindahkan aplikasi, sertakan folder gambar beserta database agar sampul tetap tersedia; `storage:link` tidak diperlukan.
+
 ## Mencoba reset password
 
 Jalankan Mailpit dari PowerShell di folder proyek:

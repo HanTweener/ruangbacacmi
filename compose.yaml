@@ -1,11 +1,32 @@
 services:
+  baca-cmi-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/hantweener/ruangbacacmi:latest
+    container_name: baca-cmi-web
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      APP_URL: ${APP_URL:-https://bacacmi.mfarhanf.dpdns.org}
+      DB_HOST: mysql
+      DB_PORT: 3306
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - storage_data:/var/www/html/storage/app/private/articles
+    networks:
+      - cmi-network
+
   mysql:
     image: mysql:8.4
-    ports:
-      - "127.0.0.1:3306:3306"
+    container_name: baca-cmi-mysql
+    restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ruangbacacmi
-      MYSQL_USER: cmi
+      MYSQL_DATABASE: ${DB_DATABASE:-ruangbacacmi}
+      MYSQL_USER: ${DB_USERNAME:-cmi}
       MYSQL_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env before starting MySQL}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set a local root password in .env}
     volumes:
@@ -15,10 +36,35 @@ services:
       interval: 5s
       timeout: 5s
       retries: 20
+    networks:
+      - cmi-network
+
   mailpit:
     image: axllent/mailpit:latest
+    container_name: baca-cmi-mailpit
+    restart: unless-stopped
     ports:
-      - "127.0.0.1:1025:1025"
       - "127.0.0.1:8025:8025"
+    networks:
+      - cmi-network
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: baca-cmi-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - baca-cmi-web
+    networks:
+      - cmi-network
+
 volumes:
   mysql_data:
+  storage_data:
+
+networks:
+  cmi-network:
+    name: cmi-network
+    driver: bridge
